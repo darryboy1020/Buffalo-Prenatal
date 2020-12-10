@@ -1,18 +1,19 @@
-import React from 'react';
-import DemoComponent from './components/DemoComponent';
+import React from 'react'
+import DemoComponent from './components/DemoComponent'
+import ContentLoader from './pages/ContentLoader'
 
-const App = () =>{
-
+const App = () => {
   const prop = {
     title: 'Issa Title',
-    description: 'YERRRRRRRR'
+    description: 'YERRRRRRRR',
   }
-  return(
+  return (
     <div>
       <h1>Hello World!</h1>
-      <DemoComponent {...prop}/>
+      <DemoComponent {...prop} />
+      <ContentLoader />
     </div>
   )
 }
 
-export default App;
+export default App
