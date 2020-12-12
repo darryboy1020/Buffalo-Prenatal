@@ -1,3 +1,13 @@
 title: 'HomePage'
 content:
+  - component: demoComponent
+    title: 'John Bolanos title'
+    description: 'This is a description from YAML'
   - component: navBar
+    items:
+      - text: 'GOOGLE'
+        link: 'www.google.com'
+      - text: 'FACEBOOK'
+        link: 'www.facebook.com'
+      - text: 'TWITTER'
+        link: www.twitter.com
