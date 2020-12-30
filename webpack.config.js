@@ -21,6 +21,14 @@ module.exports = {
         type: 'json', // Required by Webpack v4
         use: 'yaml-loader',
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
