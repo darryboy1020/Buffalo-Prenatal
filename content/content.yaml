@@ -6,8 +6,8 @@ content:
   - component: navBar
     items:
       - text: 'GOOGLE'
-        link: 'www.google.com'
+        link: 'https://www.google.com/'
       - text: 'FACEBOOK'
-        link: 'www.facebook.com'
+        link: 'https://www.facebook.com/'
       - text: 'TWITTER'
-        link: www.twitter.com
+        link: https://twitter.com/

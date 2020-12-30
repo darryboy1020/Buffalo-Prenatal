@@ -1,21 +1,35 @@
 import React from 'react'
 import YAMLData from '../../content/content.yaml'
 import DemoComponent from '../components/DemoComponent'
-import { NavBar } from '../components/NavBar'
+import NavBar from '../components/NavBar'
 
-const ContentLoader = () => (
-  <div>
-    {YAMLData.content.map(({ component, ...componentProps }) => {
-      // eslint-disable-next-line default-case
-      switch (component) {
-        case 'demoComponent':
-          return (
-            <DemoComponent key={`component${component}`} {...componentProps} />
-          )
-        case 'navBar':
-          return <NavBar {...componentProps} />
-      }
-    })}
-  </div>
-)
+const ContentLoader = () => {
+  const { content } = YAMLData
+
+  return (
+    <div>
+      {content.map(({ component, ...componentProps }, index) => {
+        switch (component) {
+          case 'navBar':
+            return (
+              <NavBar key={`${componentProps}-${index}`} {...componentProps} />
+            )
+          case 'demoComponent':
+            return (
+              <DemoComponent
+                key={`${componentProps}-${index}`}
+                {...componentProps}
+              />
+            )
+          default:
+            return (
+              <p key={`${componentProps}-${index}`}>
+                component not found: {component}
+              </p>
+            )
+        }
+      })}
+    </div>
+  )
+}
 export default ContentLoader
