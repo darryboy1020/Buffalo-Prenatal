@@ -1,5 +1,8 @@
 title: 'HomePage'
 content:
+  - component: image
+    href: fatherhood_Initiative_logo.png
+    alt: 'logo with two blue people hugging'
   - component: demoComponent
     title: 'John Bolanos title'
     description: 'This is a description from YAML'
