@@ -3,6 +3,7 @@ import YAMLData from '../../content/content.yaml'
 import DemoComponent from '../components/DemoComponent'
 import NavBar from '../components/NavBar'
 import Image from '../components/Image'
+import ArticleWithImage from '../components/ArticleWithImage'
 
 const ContentLoader = () => {
   const { content } = YAMLData
@@ -25,6 +26,13 @@ const ContentLoader = () => {
           case 'image':
             return (
               <Image key={`${componentProps}-${index}`} {...componentProps} />
+            )
+          case 'articleWithImage':
+            return (
+              <ArticleWithImage
+                key={`${componentProps}-${index}`}
+                {...componentProps}
+              />
             )
           default:
             return (

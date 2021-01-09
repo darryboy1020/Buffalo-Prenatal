@@ -1,11 +1,23 @@
 title: 'HomePage'
 content:
-  - component: image
+  - component: articleWithImage
     href: fatherhood_Initiative_logo.png
     alt: 'logo with two blue people hugging'
-  - component: demoComponent
-    title: 'John Bolanos title'
-    description: 'This is a description from YAML'
+    imagePlacement: left
+    text: >-
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  - component: articleWithImage
+    href: fatherhood_Initiative_logo.png
+    alt: 'logo with two blue people hugging'
+    imagePlacement: right
+    text: >-
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   - component: navBar
     items:
       - text: 'GOOGLE'
