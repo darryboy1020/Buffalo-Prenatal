@@ -14,3 +14,17 @@ content:
         link: 'https://www.facebook.com/'
       - text: 'TWITTER'
         link: https://twitter.com/
+  - component: naviBar
+    title: 'News'
+    href: fatherhood_Initiative_logo.png
+    alt: 'logo with two blue people hugging'
+    ass: 'center'
+  - component: backdropSite
+    href: fatherhood_pic_white_quote_3.jpg
+    alt: 'picture of father and child 1'
+    title: 'hello'
+    position: 'center'
+  - component: testimonials
+    quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+    href: placeholder_avatar.jpg
+    alt: 'placeholder avatar'
