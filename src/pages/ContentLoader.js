@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import YAMLData from '../../content/content.yaml'
 import DemoComponent from '../components/DemoComponent'
 import NavBar from '../components/NavBar'
 import Image from '../components/Image'
 import ArticleWithImage from '../components/ArticleWithImage'
+import NavScroll from '../components/NavScroll'
 
 const ContentLoader = () => {
   const { content } = YAMLData
+
+  const testRef = useRef(null)
+  const testRef2 = useRef(null)
+
+  const navScrollProps = {
+    items: [
+      {
+        text: 'Take the survey',
+        executeScroll: () => {
+          testRef.current.scrollIntoView({ behavior: 'smooth' })
+        },
+      },
+      {
+        text: 'Learn More',
+        executeScroll: () =>
+          testRef2.current.scrollIntoView({ behavior: 'smooth' }),
+      },
+      {
+        text: 'Learn More',
+        executeScroll: () =>
+          testRef2.current.scrollIntoView({ behavior: 'smooth' }),
+      },
+    ],
+  }
 
   return (
     <div>
@@ -18,10 +43,9 @@ const ContentLoader = () => {
             )
           case 'demoComponent':
             return (
-              <DemoComponent
-                key={`${componentProps}-${index}`}
-                {...componentProps}
-              />
+              <div key={`${componentProps}-${index}`} ref={testRef}>
+                <DemoComponent {...componentProps} />
+              </div>
             )
           case 'image':
             return (
@@ -29,9 +53,18 @@ const ContentLoader = () => {
             )
           case 'articleWithImage':
             return (
-              <ArticleWithImage
+              <div ref={testRef2} key={`${componentProps}-${index}`}>
+                <ArticleWithImage
+                  key={`${componentProps}-${index}`}
+                  {...componentProps}
+                />
+              </div>
+            )
+          case 'navScroll':
+            return (
+              <NavScroll
                 key={`${componentProps}-${index}`}
-                {...componentProps}
+                {...navScrollProps}
               />
             )
           default:
