@@ -42,6 +42,7 @@ const NavScroll = ({ items, variant }) => {
       border-bottom: blue solid 0.2rem;
       min-height: 2rem;
       text-align: right;
+      cursor: pointer;
     }
 
     *:last-child {
