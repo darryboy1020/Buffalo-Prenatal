@@ -25,6 +25,7 @@ content:
     title: 'hello'
     position: 'center'
   - component: testimonials
-    quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    href: placeholder_avatar.jpg
+    quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
+    author: '- A LOYAL CUSTOMER'
+    href: placeholder_avatar_circle.png
     alt: 'placeholder avatar'
