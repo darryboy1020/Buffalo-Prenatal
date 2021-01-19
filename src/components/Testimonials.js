@@ -17,7 +17,7 @@ const Testimonials = ({
 }) => {
   const { className: containerClass, styles: containerStyle } = css.resolve`
     * {
-      background-color: #282e78;
+      background-color: #4854a8;
       color: #fff;
       padding: 100px 190px;
     }
@@ -66,12 +66,16 @@ const Testimonials = ({
           </Typography>
         </Grid>
       </Grid>
+      <br />
+      <br />
+      <br />
       <Grid item container xs={12}>
         <Typography paragraph variant='h5' className={containerStyle.title}>
           {credit}
         </Typography>
       </Grid>
       <Grid item container spacing={4} xs={3}>
+        <br />
         <div className={imageClass}>
           <Image href={href_2} alt={alt_2} />
         </div>

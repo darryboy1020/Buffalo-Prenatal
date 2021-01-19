@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid'
 const NaviBar = ({ title, href, alt = '' }) => {
   const { className: containerClass, styles: containerStyle } = css.resolve`
     * {
-      background-color: #282e78;
+      background-color: #661212;
       color: #fff;
     }
   `
@@ -21,8 +21,8 @@ const NaviBar = ({ title, href, alt = '' }) => {
   `
   const { className: imageClass, styles: imageStyle } = css.resolve`
     * {
-      width: 50%;
-      height: 50%;
+      width: 30%;
+      height: 30%;
     }
   `
 

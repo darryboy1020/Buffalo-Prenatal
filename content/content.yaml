@@ -6,9 +6,9 @@ content:
     alt: 'logo with two blue people hugging'
     ass: 'center'
   - component: backdropSite
-    href: fatherhood_pic_white_quote_3.jpg
+    href: fatherhood_collage_background.png
     alt: 'picture of father and child 1'
-    title: 'hello'
+    quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
     position: 'center'
   - component: testimonials
     quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
