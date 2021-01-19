@@ -21,34 +21,32 @@ const NaviBar = ({ title, href, alt = '' }) => {
   `
   const { className: imageClass, styles: imageStyle } = css.resolve`
     * {
-      width: 15%;
-      height: 15%;
+      width: 50%;
+      height: 50%;
     }
   `
 
   return (
     <div className={containerClass}>
-      <Grid container>
-        <AppBar position='static'>
-          <Toolbar>
-            <IconButton
-              edge='start'
-              className={buttonClass}
-              color='inherit'
-              aria-label='menu'
-            >
-              <Grid item>
-                <div className={imageClass}>
-                  <Image href={href} alt={alt} />
-                </div>
-              </Grid>
-            </IconButton>
-            <Typography variant='h6' className={containerStyle.title}>
-              {title}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Grid>
+      <AppBar position='static'>
+        <Toolbar>
+          <IconButton
+            edge='start'
+            className={buttonClass}
+            color='inherit'
+            aria-label='menu'
+          >
+            <Grid item>
+              <div className={imageClass}>
+                <Image href={href} alt={alt} />
+              </div>
+            </Grid>
+          </IconButton>
+          {/* <Typography variant='h6' className={containerStyle}>
+            {title}
+          </Typography> */}
+        </Toolbar>
+      </AppBar>
       {containerStyle}
       {buttonStyle}
       {imageStyle}

@@ -14,17 +14,6 @@ const ContentLoader = () => {
     <div>
       {content.map(({ component, ...componentProps }, index) => {
         switch (component) {
-          case 'navBar':
-            return (
-              <NavBar key={`${componentProps}-${index}`} {...componentProps} />
-            )
-          case 'demoComponent':
-            return (
-              <DemoComponent
-                key={`${componentProps}-${index}`}
-                {...componentProps}
-              />
-            )
           case 'naviBar':
             return (
               <NaviBar key={`${componentProps}-${index}`} {...componentProps} />
