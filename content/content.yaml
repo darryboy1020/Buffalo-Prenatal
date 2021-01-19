@@ -39,3 +39,22 @@ content:
   - component: demoComponent
     title: Hello
     description: 'How are you'
+  - component: naviBar
+    title: 'News'
+    href: fatherhood_Initiative_logo_small.png
+    alt: 'logo with two blue people hugging'
+    ass: 'center'
+  - component: backdropSite
+    href: fatherhood_collage_background.png
+    alt: 'picture of father and child 1'
+    quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
+    position: 'center'
+  - component: testimonials
+    quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
+    quote_1: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"'
+    author: '- A LOYAL CUSTOMER'
+    credit: 'Credited by: '
+    href: placeholder_avatar_circle.png
+    alt: 'placeholder avatar'
+    href_2: fatherhood_Initiative_logo.png
+    alt_2: 'placeholder avatar'
