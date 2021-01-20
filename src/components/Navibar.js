@@ -68,7 +68,7 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
 
   const { className: containerClass, styles: containerStyle } = css.resolve`
     * {
-      background-color: #661212;
+      background-color: #4854a8;
       max-height: 5rem;
     }
   `
