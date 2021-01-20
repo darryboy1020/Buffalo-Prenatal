@@ -32,6 +32,10 @@ const NavScroll = ({ items, variant }) => {
       max-width: 14rem;
       display: ${scrolled ? 'initial' : 'none'};
     }
+
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
   `
 
   const {

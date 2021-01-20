@@ -1,56 +1,137 @@
-import React from 'react'
+import React, { useState } from 'react'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import css from 'styled-jsx/css'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import Image from './Image'
-import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import useBreakpoint from '../hooks/useBreakpoint'
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
+import Drawer from '@material-ui/core/Drawer'
+import Slide from '@material-ui/core/Slide'
+import AppBar from '@material-ui/core/AppBar'
+const NaviBar = ({ title, href, alt = '', buttonText }) => {
+  const breakpoint = useBreakpoint()
 
-const NaviBar = ({ title, href, alt = '' }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const trigger = useScrollTrigger()
+  console.log(trigger)
+
+  const closeDrawer = () => {
+    setDrawerOpen(false)
+  }
+
+  const renderDrawer = () => {
+    return (
+      <Drawer
+        variant='temporary'
+        open={drawerOpen}
+        anchor='bottom'
+        onEscapeKeyDown={closeDrawer}
+        onBackdropClick={closeDrawer}
+      >
+        Hello
+      </Drawer>
+    )
+  }
+  const renderButton = () => {
+    return (
+      <Grid className={buttonClass} item sm={4}>
+        <Button
+          variant='contained'
+          onClick={() => console.log('button') > { buttonText }}
+        >
+          {buttonText}
+        </Button>
+      </Grid>
+    )
+  }
+
+  const renderHamburger = () => {
+    return (
+      <Grid item sm={4}>
+        <IconButton
+          color='inherit'
+          aria-label='open drawer'
+          onClick={() => {
+            setDrawerOpen(!drawerOpen)
+          }}
+          edge='start'
+        >
+          <MenuIcon />
+        </IconButton>
+        {renderDrawer()}
+      </Grid>
+    )
+  }
+
   const { className: containerClass, styles: containerStyle } = css.resolve`
     * {
       background-color: #661212;
-      color: #fff;
+      max-height: 5rem;
     }
   `
-  const { className: buttonClass, styles: buttonStyle } = css.resolve`
+  const { className: textClass, styles: textStyle } = css.resolve`
     * {
       color: #fff;
+      font-size: 18.75px;
+      font-weight: 400;
+      padding-left: 15%;
     }
   `
   const { className: imageClass, styles: imageStyle } = css.resolve`
     * {
-      width: 30%;
-      height: 30%;
+      height: 5rem;
+      padding-left: 1rem;
+    }
+
+    @media only screen and (min-width: 600px) {
+      padding-left: 2rem;
+    }
+  `
+  const { className: buttonClass, styles: buttonStyle } = css.resolve`
+    * {
+      display: initial;
+      text-align: center;
     }
   `
 
   return (
-    <div className={containerClass}>
-      <AppBar position='static'>
-        <Toolbar>
-          <IconButton
-            edge='start'
-            className={buttonClass}
-            color='inherit'
-            aria-label='menu'
-          >
-            <Grid item>
-              <div className={imageClass}>
-                <Image href={href} alt={alt} />
-              </div>
+    <Slide direction='down' in={!trigger}>
+      <AppBar
+        position={breakpoint !== 'xs' ? 'static' : 'sticky'}
+        className={containerClass}
+      >
+        <Grid container alignItems='center' className={containerClass}>
+          <Grid className={imageClass} xs={3} sm={4} item>
+            <Image inherit href={href} alt={alt} />
+          </Grid>
+          <Grid item xs={9} sm={8}>
+            <Grid
+              container
+              direction={breakpoint === 'xs' ? 'row-reverse' : 'row'}
+            >
+              {breakpoint === 'xs' ? null : (
+                <Grid item sm={8}>
+                  <Typography variant='h6' className={textClass}>
+                    {title}
+                  </Typography>
+                </Grid>
+              )}
+
+              {buttonText && !(breakpoint === 'xs')
+                ? renderButton()
+                : renderHamburger()}
+              {containerStyle}
+              {textStyle}
+              {imageStyle}
+              {buttonStyle}
             </Grid>
-          </IconButton>
-          {/* <Typography variant='h6' className={containerStyle}>
-            {title}
-          </Typography> */}
-        </Toolbar>
+          </Grid>
+        </Grid>
       </AppBar>
-      {containerStyle}
-      {buttonStyle}
-      {imageStyle}
-    </div>
+    </Slide>
   )
 }
 

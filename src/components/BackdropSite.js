@@ -9,6 +9,7 @@ const BackdropSite = ({ href, alt = '', quote }) => {
     * {
       /* background-color: #282e78; */
       color: #fff;
+      word-break: break-word;
     }
   `
   const { className: imageClass, styles: imageStyle } = css.resolve`

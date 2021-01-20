@@ -11,25 +11,20 @@ const ContentLoader = () => {
   const { content } = YAMLData
 
   const testRef = useRef(null)
-  const testRef2 = useRef(null)
+  const contactRef2 = useRef(null)
 
   const navScrollProps = {
     items: [
       {
-        text: 'Take the survey',
+        text: 'Testominials',
         executeScroll: () => {
           testRef.current.scrollIntoView({ behavior: 'smooth' })
         },
       },
       {
-        text: 'Learn More',
+        text: 'Contact us',
         executeScroll: () =>
-          testRef2.current.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        text: 'Learn More',
-        executeScroll: () =>
-          testRef2.current.scrollIntoView({ behavior: 'smooth' }),
+          contactRef2.current.scrollIntoView({ behavior: 'smooth' }),
       },
     ],
   }
@@ -55,19 +50,16 @@ const ContentLoader = () => {
             )
           case 'testimonials':
             return (
-              <Testimonials
-                key={`${componentProps}-${index}`}
-                {...componentProps}
-              />
+              <div ref={testRef} key={`${componentProps}-${index}`}>
+                <Testimonials {...componentProps} />
+              </div>
             )
           case 'articleWithImage':
             return (
-              <div ref={testRef2} key={`${componentProps}-${index}`}>
-                <ArticleWithImage
-                  key={`${componentProps}-${index}`}
-                  {...componentProps}
-                />
-              </div>
+              <ArticleWithImage
+                key={`${componentProps}-${index}`}
+                {...componentProps}
+              />
             )
           case 'navScroll':
             return (
