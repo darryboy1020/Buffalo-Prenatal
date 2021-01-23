@@ -81,6 +81,7 @@ const SurverForm = ({ textItems }) => {
                   <TextField
                     name={name}
                     fullWidth
+                    error={errors[name]}
                     placeholder={placeholder}
                     inputRef={register({
                       required: 'Field cannot be empty',
