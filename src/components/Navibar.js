@@ -11,12 +11,12 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '@material-ui/core/Drawer'
 import Slide from '@material-ui/core/Slide'
 import AppBar from '@material-ui/core/AppBar'
+import { Link } from 'react-router-dom'
 const NaviBar = ({ title, href, alt = '', buttonText }) => {
   const breakpoint = useBreakpoint()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const trigger = useScrollTrigger()
-  console.log(trigger)
 
   const closeDrawer = () => {
     setDrawerOpen(false)
@@ -38,10 +38,7 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
   const renderButton = () => {
     return (
       <Grid className={buttonClass} item sm={4}>
-        <Button
-          variant='contained'
-          onClick={() => console.log('button') > { buttonText }}
-        >
+        <Button variant='contained' component={Link} to='/survey'>
           {buttonText}
         </Button>
       </Grid>
@@ -69,7 +66,7 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
   const { className: containerClass, styles: containerStyle } = css.resolve`
     * {
       background-color: #4854a8;
-      max-height: 5rem;
+      min-height: 5rem;
     }
   `
   const { className: textClass, styles: textStyle } = css.resolve`
@@ -105,7 +102,9 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
       >
         <Grid container alignItems='center' className={containerClass}>
           <Grid className={imageClass} xs={3} sm={4} item>
-            <Image inherit href={href} alt={alt} />
+            <Link className={imageClass} to='/'>
+              <Image inherit href={href} alt={alt} />
+            </Link>
           </Grid>
           <Grid item xs={9} sm={8}>
             <Grid

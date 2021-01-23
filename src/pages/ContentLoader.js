@@ -1,14 +1,16 @@
 import React, { useRef } from 'react'
-import YAMLData from '../../content/content.yaml'
 import Image from '../components/Image'
 import ArticleWithImage from '../components/ArticleWithImage'
 import NavScroll from '../components/NavScroll'
 import NaviBar from '../components/Navibar'
 import BackdropSite from '../components/BackdropSite'
 import Testimonials from '../components/Testimonials'
+import InfoBox from '../components/InfoBox'
+import SurverFrom from '../components/SurveyForm'
+import SurverForm from '../components/SurveyForm'
 
-const ContentLoader = () => {
-  const { content } = YAMLData
+const ContentLoader = ({ yaml }) => {
+  const { content } = yaml
 
   const testRef = useRef(null)
   const contactRef2 = useRef(null)
@@ -66,6 +68,17 @@ const ContentLoader = () => {
               <NavScroll
                 key={`${componentProps}-${index}`}
                 {...navScrollProps}
+              />
+            )
+          case 'infoBox':
+            return (
+              <InfoBox key={`${componentProps}-${index}`} {...componentProps} />
+            )
+          case 'surveyForm':
+            return (
+              <SurverForm
+                key={`${componentProps}-${index}`}
+                {...componentProps}
               />
             )
           default:

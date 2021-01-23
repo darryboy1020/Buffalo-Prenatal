@@ -1,0 +1,23 @@
+title: 'Survey'
+content:
+  - component: naviBar
+    title: Welcome to the Survey!
+    buttonText: Take now!
+    href: fatherhood_Initiative_logo_small.png
+    alt: 'logo with two blue people hugging'
+  - component: infoBox
+    required: true
+    title: Life Satisfaction Survey
+    body: |
+      The overall well-being of fathers and men is equally as important as the well-being of children and families. Reflecting on our sense of happiness in different key areas of life can be difficult, especially if our life is seemingly all going well. Sometimes feelings of unhappiness or dissatisfaction just seem to find us and it is up to us to take the time to explore why this might be. Therefore, we ask that you spend no more than five minutes to complete this survey.
+
+      Guide: Below you will find five statements with which you may agree or disagree. Using the 1-7 scale below, indicate your agreement with each statement by placing the corresponding number in the line beside that statement. You are encouraged to be open and honest in each response.
+  - component: surveyForm
+    textItems:
+      - question: hellokljdnsjdnlkjsndlkanlwdkal;kdmlksndlsjndfljsndlknldfjnl
+        name: name
+        placeholder: Enter Name
+        required: true
+      - question: okpokpokpokpokpok
+        name: email
+        required: true

@@ -1,9 +1,9 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
-const NavBar = ({ items, ass = 'flex-start' }) => {
+const NavBar = ({ items }) => {
   return (
-    <Grid container justify={ass}>
+    <Grid container>
       {items.map(({ text, link }) => {
         return (
           <Grid key={`${text}-${link}`} item>
