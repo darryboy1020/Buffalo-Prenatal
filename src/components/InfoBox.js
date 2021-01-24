@@ -29,7 +29,7 @@ const InfoBox = ({ title, body, required }) => {
             </Typography>
             {required ? (
               <Typography color='error' paragraph>
-                * Required
+                (*) Required
               </Typography>
             ) : null}
           </CardContent>

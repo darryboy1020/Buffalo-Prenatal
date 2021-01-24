@@ -129,7 +129,7 @@ const SurverForm = ({ textItems, radioItems }) => {
                 </Grid>
                 <Grid item>
                   <RadioGroup defaultValue={arrAgree[0]} onChange={() => {}}>
-                    {arrAgree.map((answer, index) => {
+                    {arrAgree.map((answer) => {
                       return (
                         <Grid key={answer} alignItems='center' container>
                           <Grid item sm={1}>
