@@ -7,26 +7,66 @@ content:
     alt: 'logo with two blue people hugging'
   - component: infoBox
     required: true
-    title: Life Satisfaction Survey
+    title: Fatherhood Research and Practice Network Coparenting Relationship Scale Scoring Guide
     body: |
-      The overall well-being of fathers and men is equally as important as the well-being of children and families. Reflecting on our sense of happiness in different key areas of life can be difficult, especially if our life is seemingly all going well. Sometimes feelings of unhappiness or dissatisfaction just seem to find us and it is up to us to take the time to explore why this might be. Therefore, we ask that you spend no more than five minutes to complete this survey.
-
-      Guide: Below you will find five statements with which you may agree or disagree. Using the 1-7 scale below, indicate your agreement with each statement by placing the corresponding number in the line beside that statement. You are encouraged to be open and honest in each response.
+      The Fatherhood Research and Practice Network Coparenting Relationship Scale is designed for use
+      with nonresidential fathers. Fathers should complete the scale so that responses correspond to their
+      target child’s mother. Many programs select the youngest child as the target child, but your program
+      can select a different child to ask fathers about (i.e. the father’s second youngest child). If applicable,
+      you may also choose to administer this survey more than once with fathers who have multiple
+      coparenting mothers. Consult with your researcher about this matter.
   - component: surveyForm
     textItems:
-      - question: hellokljdnsjdnlkjsndlkanlwdkal;kdmlksndlsjndfljsndlknldfjnl
+      - question: Please enter your full name
         name: name
         placeholder: Enter Name
         required: true
-      - question: okpokpokpokpokpok
+      - question: please enter email
         name: email
+        placeholder: Email
         required: true
     radioItems:
-      - question: okgmdimfdm
-        name: ok
+      - question: The mother of [Name of Child] contradicts the decisions I make about [Name of child].
+        name: motherContradicts
         required: true
         questionType: agree
-      - question: okgmdim
-        name: okay
+      - question: The mother of [Name of Child] makes negative comments, jokes, or sarcastic comments about the way I am as a parent.
+        name: motherNegativeComments
         required: true
+        questionType: agree
+      - question: The mother of my [Name of Child] and I discuss the best way to meet [Name of Child] needs.
+        required: true
+        name: motherBelittles
+        questionType: agree
+      - question: The mother of [Name of Child] and I discuss the best way to meet [Name of Child] needs.
+        required: true
+        name: parentsMeetsNeed
+        questionType: agree
+      - question: The mother of [Name of Child] and I share information about [Name of Child] with each other.
+        required: true
+        name: parentShareinfo
+        questionType: agree
+      - question: The mother of [Name of Child] and I make joint decisions about [Name of Child].
+        required: true
+        name: parentsJointDecision
+        questionType: agree
+      - question: The mother of [Name of Child] and I try to understand where each other is coming from.
+        required: true
+        name: parentsTrytoUnderstand
+        questionType: agree
+      - question: The mother of [Name of Child] and I respect each other’s decisions made about [Name of Child].
+        required: true
+        name: parentsRespectEachOther
+        questionType: agree
+      - question: The mother of [Name of Child] makes it hard for me to spend time with [Name of Child].
+        required: true
+        name: motherMakesItHardToSeeChild
+        questionType: agree
+      - question: The mother of [Name of Child] makes it hard for me to talk with [Name of Child].
+        required: true
+        name: motherMakesItHardToTalk
+        questionType: agree
+      - question: The mother of [Name of Child] tells [Name of Child] what he/she is allowed and not allowed to say to me.
+        required: true
+        name: motherTellsChildWhatToSay
         questionType: agree
