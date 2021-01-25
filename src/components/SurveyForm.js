@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import { useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 
-const SurverForm = ({ textItems }) => {
+const SurverForm = ({ textItems, radioItems }) => {
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = (data) => {
@@ -103,10 +103,64 @@ const SurverForm = ({ textItems }) => {
     )
   }
 
+  const getRadioButtons = (radioItems) => {
+    const arrAgree = [
+      'Strongly disagree',
+      'Disagree',
+      'Neutral',
+      'Agree',
+      'Strongly agree',
+    ]
+
+    return (
+      <Grid
+        className={containerClass}
+        justify='center'
+        direction='column'
+        container
+      >
+        {radioItems.map(({ question, name, required }) => {
+          return (
+            <Card className={cardContainerClass} key={question}>
+              <CardContent>
+                <Grid item>
+                  <div style={{ wordBreak: 'break-word' }}>{question}</div>
+                  {required ? <Typography color='error'>*</Typography> : null}
+                </Grid>
+                <Grid item>
+                  <RadioGroup defaultValue={arrAgree[0]} onChange={() => {}}>
+                    {arrAgree.map((answer, index) => {
+                      return (
+                        <Grid key={answer} alignItems='center' container>
+                          <Grid item sm={1}>
+                            <Radio
+                              name={name}
+                              value={answer}
+                              required={required}
+                              inputRef={register}
+                            />
+                          </Grid>
+                          <Grid item sm={11}>
+                            <Typography>{answer}</Typography>
+                          </Grid>
+                        </Grid>
+                      )
+                    })}
+                  </RadioGroup>
+                </Grid>
+              </CardContent>
+            </Card>
+          )
+        })}
+      </Grid>
+    )
+  }
+
   return (
     <Grid container justify='center'>
       <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
         {textItems ? getTextInputs(textItems) : null}
+        {radioItems ? getRadioButtons(radioItems) : null}
         <Button className={buttonClass} variant='contained' type='submit'>
           Sumbit
         </Button>

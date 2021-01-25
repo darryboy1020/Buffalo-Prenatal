@@ -21,3 +21,12 @@ content:
       - question: okpokpokpokpokpok
         name: email
         required: true
+    radioItems:
+      - question: okgmdimfdm
+        name: ok
+        required: true
+        questionType: agree
+      - question: okgmdim
+        name: okay
+        required: true
+        questionType: agree
