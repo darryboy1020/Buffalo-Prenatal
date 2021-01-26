@@ -67,21 +67,19 @@ const SurverForm = ({ textItems, radioItems }) => {
         direction='column'
         container
       >
-        {textItems.map(({ question, name, required, placeholder }, index) => {
+        {textItems.map(({ question, name, required, placeholder }) => {
           return (
             <Card className={cardContainerClass} key={question}>
               <CardContent>
                 <Grid item>
-                  <div style={{ wordBreak: 'break-word' }}>{`${
-                    index + 1
-                  }. ${question}`}</div>
+                  <div style={{ wordBreak: 'break-word' }}>{question}</div>
                   {required ? <Typography color='error'>*</Typography> : null}
                 </Grid>
-                <Grid item md={6}>
+                <Grid item sm={6}>
                   <TextField
                     name={name}
                     fullWidth
-                    error={errors[name]}
+                    error={errors[name] !== undefined}
                     placeholder={placeholder}
                     inputRef={register({
                       required: 'Field cannot be empty',
@@ -119,12 +117,14 @@ const SurverForm = ({ textItems, radioItems }) => {
         direction='column'
         container
       >
-        {radioItems.map(({ question, name, required }) => {
+        {radioItems.map(({ question, name, required }, index) => {
           return (
             <Card className={cardContainerClass} key={question}>
               <CardContent>
                 <Grid item>
-                  <div style={{ wordBreak: 'break-word' }}>{question}</div>
+                  <div style={{ wordBreak: 'break-word' }}>{`${
+                    index + 1
+                  }. ${question}`}</div>
                   {required ? <Typography color='error'>*</Typography> : null}
                 </Grid>
                 <Grid item>
