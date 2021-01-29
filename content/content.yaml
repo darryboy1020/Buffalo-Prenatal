@@ -2,6 +2,13 @@ title: 'HomePage'
 content:
   - component: navScroll
   - component: naviBar
+    drawerItems:
+      - text: Survey
+        href: /survey
+        icon: survey
+      - text: Contact
+        href: /contact
+        icon: contact
     title: Take the Life Satisfaction Survey!
     buttonText: Take now!
     href: fatherhood_Initiative_logo_small.png

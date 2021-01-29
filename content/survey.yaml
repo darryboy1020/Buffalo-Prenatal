@@ -1,6 +1,10 @@
 title: 'Survey'
 content:
   - component: naviBar
+    drawerItems:
+      - text: Home
+        href: /
+        icon: home
     title: Welcome to the Survey!
     buttonText: Take now!
     href: fatherhood_Initiative_logo_small.png
@@ -21,52 +25,52 @@ content:
         name: name
         placeholder: Enter Name
         required: true
-      - question: please enter email
+      - question: Please enter email
         name: email
         placeholder: Email
         required: true
     radioItems:
       - question: The mother of [Name of Child] contradicts the decisions I make about [Name of child].
-        name: motherContradicts
+        name: question1
         required: true
         questionType: agree
       - question: The mother of [Name of Child] makes negative comments, jokes, or sarcastic comments about the way I am as a parent.
-        name: motherNegativeComments
+        name: question2
         required: true
         questionType: agree
       - question: The mother of my [Name of Child] and I discuss the best way to meet [Name of Child] needs.
         required: true
-        name: motherBelittles
+        name: question3
         questionType: agree
       - question: The mother of [Name of Child] and I discuss the best way to meet [Name of Child] needs.
         required: true
-        name: parentsMeetsNeed
+        name: question4
         questionType: agree
       - question: The mother of [Name of Child] and I share information about [Name of Child] with each other.
         required: true
-        name: parentShareinfo
+        name: question5
         questionType: agree
       - question: The mother of [Name of Child] and I make joint decisions about [Name of Child].
         required: true
-        name: parentsJointDecision
+        name: question6
         questionType: agree
       - question: The mother of [Name of Child] and I try to understand where each other is coming from.
         required: true
-        name: parentsTrytoUnderstand
+        name: question7
         questionType: agree
       - question: The mother of [Name of Child] and I respect each other’s decisions made about [Name of Child].
         required: true
-        name: parentsRespectEachOther
+        name: question8
         questionType: agree
       - question: The mother of [Name of Child] makes it hard for me to spend time with [Name of Child].
         required: true
-        name: motherMakesItHardToSeeChild
+        name: question9
         questionType: agree
       - question: The mother of [Name of Child] makes it hard for me to talk with [Name of Child].
         required: true
-        name: motherMakesItHardToTalk
+        name: question10
         questionType: agree
       - question: The mother of [Name of Child] tells [Name of Child] what he/she is allowed and not allowed to say to me.
         required: true
-        name: motherTellsChildWhatToSay
+        name: question11
         questionType: agree
