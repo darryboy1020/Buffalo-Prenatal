@@ -1,6 +1,10 @@
 title: 'Survey'
 content:
   - component: naviBar
+    drawerItems:
+      - text: Home
+        href: /
+        icon: home
     title: Welcome to the Survey!
     buttonText: Take now!
     href: fatherhood_Initiative_logo_small.png

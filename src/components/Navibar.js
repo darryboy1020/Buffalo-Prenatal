@@ -12,7 +12,15 @@ import Drawer from '@material-ui/core/Drawer'
 import Slide from '@material-ui/core/Slide'
 import AppBar from '@material-ui/core/AppBar'
 import { Link } from 'react-router-dom'
-const NaviBar = ({ title, href, alt = '', buttonText }) => {
+import List from '@material-ui/core/List'
+import MailIcon from '@material-ui/icons/Mail'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListAltIcon from '@material-ui/icons/ListAlt'
+import ContactSupportIcon from '@material-ui/icons/ContactSupport'
+import HomeIcon from '@material-ui/icons/Home'
+const NaviBar = ({ title, href, alt = '', buttonText, drawerItems }) => {
   const breakpoint = useBreakpoint()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -31,7 +39,25 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
         onEscapeKeyDown={closeDrawer}
         onBackdropClick={closeDrawer}
       >
-        Hello
+        <List>
+          {drawerItems.map(({ text, href, icon }) => {
+            const getIcon = (icon) => {
+              const arrIcon = {
+                survey: <ListAltIcon />,
+                home: <HomeIcon />,
+                contact: <ContactSupportIcon />,
+              }
+
+              return arrIcon[icon]
+            }
+            return (
+              <ListItem button component={Link} to={href} key={text}>
+                <ListItemIcon>{getIcon(icon)}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            )
+          })}
+        </List>
       </Drawer>
     )
   }
