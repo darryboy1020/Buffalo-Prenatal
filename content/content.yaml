@@ -4,11 +4,12 @@ content:
   - component: naviBar
     title: Take the Life Satisfaction Survey!
     buttonText: Take now!
-    href: fatherhood_Initiative_logo_small.png
+    href: Fatherhood_Initiative_Logo_wTag.png
     alt: 'logo with two blue people hugging'
   - component: articleWithImage
     href: fatherhood_collage_background.png
-    text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
+    text: >-
+      "The nature of impending fatherhood is that you are doing something that you're unqualified to do, and then you become qualified while doing it."
   - component: testimonials
     quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
     quote_1: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"'
@@ -16,5 +17,5 @@ content:
     credit: 'Credited by: '
     href: placeholder_avatar_circle.png
     alt: 'placeholder avatar'
-    href_2: fatherhood_Initiative_logo.png
+    href_2: Fatherhood_Initiative_Logo_wTag.png
     alt_2: 'placeholder avatar'

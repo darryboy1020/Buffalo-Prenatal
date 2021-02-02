@@ -79,7 +79,7 @@ const NaviBar = ({ title, href, alt = '', buttonText }) => {
   `
   const { className: imageClass, styles: imageStyle } = css.resolve`
     * {
-      height: 5rem;
+      height: 4rem;
       padding-left: 1rem;
     }
 
