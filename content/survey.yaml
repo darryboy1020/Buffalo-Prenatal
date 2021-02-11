@@ -7,7 +7,7 @@ content:
         icon: home
     title: Welcome to the Survey!
     buttonText: Take now!
-    href: fatherhood_Initiative_logo_small.png
+    href: Fatherhood_Initiative_Logo_wTag.png
     alt: 'logo with two blue people hugging'
   - component: infoBox
     required: true

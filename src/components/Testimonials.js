@@ -18,7 +18,7 @@ const Testimonials = ({
     * {
       background-color: #4854a8;
       color: #fff;
-      padding: 2rem;
+      padding: 6rem;
     }
   `
 
@@ -28,17 +28,44 @@ const Testimonials = ({
     }
   `
 
+  const { className: top_textClass, styles: top_textStyle } = css.resolve`
+    * {
+      background-color: #4854a8;
+      color: #fff;
+      margin: 5rem 0rem 0rem 0rem;
+      padding: 2rem;
+      word-break: break-word;
+    }
+  `
+
+  const { className: logoClass, styles: logoStyle } = css.resolve`
+    * {
+      background-color: #4854a8;
+      color: #fff;
+      margin: 2rem;
+      padding: 2rem;
+      word-break: break-word;
+    }
+  `
+
+  const { className: logo_imageClass, styles: logo_imageStyle } = css.resolve`
+    * {
+      height: 10%;
+      width: 10%;
+    }
+  `
+
   return (
     <div className={containerClass}>
-      <Grid container justify='center' spacing={4}>
-        <Grid className={quoteClass} item xs={12}>
+      <Grid container justify='center' spacing={3}>
+        <Grid item className={top_textClass} xs={12}>
           <Typography align='center' variant='h2'>
             {quote_1}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Grid container spacing={2}>
-            <Grid xs={12} sm={4} item>
+          <Grid container spacing={3}>
+            <Grid xs={12} sm={2} item>
               <Image href={href} alt={alt} />
             </Grid>
 
@@ -50,21 +77,28 @@ const Testimonials = ({
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Grid container>
-            <Grid item xs={12}>
-              <Typography paragraph variant='h5'>
-                {credit}
-              </Typography>
-            </Grid>
-
-            <Grid item xs={6} sm={3}>
-              <Image href={href_2} alt={alt_2} />
-            </Grid>
+        <Grid
+          item
+          container
+          className={logoClass}
+          direction='column'
+          justify='center'
+          alignItems='flex-end'
+          xs={6}
+          sm={12}
+        >
+          <Grid item xs={3}>
+            <Typography variant='h6'>{credit}</Typography>
+          </Grid>
+          <Grid item className={logo_imageClass} xs={6} sm={3}>
+            <Image href={href_2} alt={alt_2} />
           </Grid>
         </Grid>
         {containerStyle}
         {quoteStyle}
+        {top_textStyle}
+        {logoStyle}
+        {logo_imageStyle}
       </Grid>
     </div>
   )
