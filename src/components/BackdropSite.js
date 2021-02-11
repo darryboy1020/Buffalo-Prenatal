@@ -20,6 +20,18 @@ const BackdropSite = ({ href, alt = '', quote }) => {
     }
   `
 
+  const { className: videoClass, styles: videoStyle } = css.resolve`
+    * {
+      position: 'absolute';
+      width: 100%;
+      left: 50%;
+      top: 50%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      justify: 'center';
+    }
+  `
+
   return (
     <div className={containerClass}>
       <Grid container justify='center'>
@@ -36,6 +48,7 @@ const BackdropSite = ({ href, alt = '', quote }) => {
       </Grid>
       {containerStyle}
       {imageStyle}
+      {videoStyle}
     </div>
   )
 }
