@@ -9,12 +9,26 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Button from '@material-ui/core/Button'
 import { useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
+import emailjs from 'emailjs-com'
 
 const SurverForm = ({ textItems, radioItems }) => {
+  const SERVICE_ID = 'contact_service'
+  const TEMPLATE_ID = 'contact_form'
+  const USER_ID = 'user_axPgJ0ZCW7NtK2twyMIHZ'
+
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data)
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
+      (result) => {
+        console.log(result.text)
+        console.log('Success...')
+      },
+      (error) => {
+        console.log(error.text)
+        console.log('Failed...')
+      }
+    )
   }
 
   const { className: containerClass, styles: containerStyle } = css.resolve`
@@ -158,7 +172,11 @@ const SurverForm = ({ textItems, radioItems }) => {
 
   return (
     <Grid container justify='center'>
-      <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id='surveyForm'
+        className={formClass}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {textItems ? getTextInputs(textItems) : null}
         {radioItems ? getRadioButtons(radioItems) : null}
         <Button className={buttonClass} variant='contained' type='submit'>
