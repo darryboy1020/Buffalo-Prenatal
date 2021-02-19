@@ -6,8 +6,7 @@ import NaviBar from '../components/Navibar'
 import BackdropSite from '../components/BackdropSite'
 import Testimonials from '../components/Testimonials'
 import InfoBox from '../components/InfoBox'
-import SurverFrom from '../components/SurveyForm'
-import SurverForm from '../components/SurveyForm'
+import SurveyForm from '../components/SurveyForm'
 
 const ContentLoader = ({ yaml }) => {
   const { content } = yaml
@@ -76,7 +75,7 @@ const ContentLoader = ({ yaml }) => {
             )
           case 'surveyForm':
             return (
-              <SurverForm
+              <SurveyForm
                 key={`${componentProps}-${index}`}
                 {...componentProps}
               />
