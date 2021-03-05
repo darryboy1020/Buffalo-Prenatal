@@ -8,6 +8,7 @@ import Testimonials from '../components/Testimonials'
 import InfoBox from '../components/InfoBox'
 import SurverFrom from '../components/SurveyForm'
 import SurverForm from '../components/SurveyForm'
+import ContactUs from '../components/ContactUs'
 
 const ContentLoader = ({ yaml }) => {
   const { content } = yaml
@@ -54,6 +55,12 @@ const ContentLoader = ({ yaml }) => {
             return (
               <div ref={testRef} key={`${componentProps}-${index}`}>
                 <Testimonials {...componentProps} />
+              </div>
+            )
+          case 'contactUs':
+            return (
+              <div ref={testRef} key={`${componentProps}-${index}`}>
+                <ContactUs {...componentProps} />
               </div>
             )
           case 'articleWithImage':

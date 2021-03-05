@@ -24,21 +24,39 @@ const ArticleWithImage = ({ href, alt, text, imagePlacement = 'right' }) => {
       padding: 2rem;
     }
   `
+  const { className: imageClass, styles: imageStyle } = css.resolve`
+    * {
+      max-height: 100%;
+      max-width: 100%;
+      /* position: 'absolute'; */
+      /* padding: 8rem; */
+    }
+  `
 
   return (
-    <Grid
-      direction={getImageStyle(imagePlacement)}
-      alignItems='center'
-      container
-    >
-      <Grid item sm={12} md={6} className={quoteClass}>
-        <Typography variant='h2'>{text}</Typography>
+    <div>
+      {/* //   direction={getImageStyle(imagePlacement)}
+    //   alignItems='center'
+
+    //   container
+    // >
+    //   <Grid item sm={12} md={6} className={quoteClass}>
+    //     
+    //   </Grid></Grid>{quoteStyle} */}
+      <Grid
+        item
+        sm={12}
+        md={6}
+        justify='center'
+        alignItems='center'
+        className={imageClass}
+      >
+        <Image href={href} alt={alt}>
+          <Typography variant='h2'>{text}</Typography>
+        </Image>
       </Grid>
-      <Grid item sm={12} md={6}>
-        <Image href={href} alt={alt} />
-      </Grid>
-      {quoteStyle}
-    </Grid>
+      {imageStyle}
+    </div>
   )
 }
 
