@@ -20,7 +20,7 @@
     "styled-jsx": "^3.3.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "concurrently \"cd backend && node server.js\" \"webpack-dev-server --mode development --open --hot\"",
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
