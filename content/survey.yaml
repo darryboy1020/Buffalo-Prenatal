@@ -11,14 +11,11 @@ content:
     alt: 'logo with two blue people hugging'
   - component: infoBox
     required: true
-    title: Fatherhood Research and Practice Network Coparenting Relationship Scale Scoring Guide
-    body: |
-      The Fatherhood Research and Practice Network Coparenting Relationship Scale is designed for use
-      with nonresidential fathers. Fathers should complete the scale so that responses correspond to their
-      target child’s mother. Many programs select the youngest child as the target child, but your program
-      can select a different child to ask fathers about (i.e. the father’s second youngest child). If applicable,
-      you may also choose to administer this survey more than once with fathers who have multiple
-      coparenting mothers. Consult with your researcher about this matter.
+    title: 'Fatherhood Network Coparenting Relationship Scale Scoring Guide'
+    body:
+      'The process you’re about to go through takes a few minutes, but it’s pretty simple. Once you’ve completed the assessment, your survey results will be emailed to you in the form of a dashboard PDF where you will be able to look at your areas of strength, as well as areas for improvement as it relates to your coparenting relationship and father self-efficacy.
+      Your information is confidential and will not be shared with anyone other than your Fatherhood Advisor who will help you develop a plan to move closer to your parenting goals and personal growth.'
+
   - component: surveyForm
     textItems:
       - question: Please enter your full name

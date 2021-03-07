@@ -14,15 +14,35 @@ content:
     href: Fatherhood_Initiative_Logo_wTag.png
     alt: 'logo with two blue people hugging'
   - component: articleWithImage
-    href: fatherhood_collage_background.png
+    href: fatherhood_background_blue.jpg
     text: >-
       "The nature of impending fatherhood is that you are doing something that you're unqualified to do, and then you become qualified while doing it."
   - component: testimonials
-    quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."'
-    quote_1: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"'
+    quote: '"The Program helped me to see things through a different lens and improved my ability to communicate. Helped me to lessen conflict with my wife concerning issues with our son and created an atmosphere for everyone to feel comfortable."'
+    quote_1: '"Become a better father. Build a brighter future"'
     author: '- A LOYAL CUSTOMER'
     credit: 'Credited by: '
-    href: placeholder_avatar_circle.png
+    href: placeholder_man_avatar.png
     alt: 'placeholder avatar'
-    href_2: Fatherhood_Initiative_Logo_wTag.png
+    href_2: BPPN_Logo_4C.png
     alt_2: 'placeholder avatar'
+  - component: contactUs
+    top_text: 'Contact Us'
+    youtube_logo: youtube_play_button_logo.png
+    alt_y: 'youtube play button logo'
+    link_y: https://www.youtube.com/channel/UC6Gxg3f8pvuRLNIs3rRRP2Q/featured
+    facebook_logo: facebook-logo.png
+    alt_f: 'facebook logo'
+    link_f: https://www.facebook.com/PrenatalPerinatal/
+    twitter_logo: twitter_logo.png
+    alt_t: 'twitter logo'
+    link_t: https://twitter.com/BuffaloPrenatal
+    insta_logo: instagram_logo.png
+    alt_i: 'instagram logo'
+    link_i: https://www.instagram.com/buffaloprenatalperinatal/
+    email_logo: email_logo.png
+    alt_e: 'email envelope logo'
+    text_email: 'ajohnson@bppn.org'
+    phone_logo: smartphone.png
+    alt_p: 'smartphone logo'
+    text_phone: '(716)884-6711 ext. 279'

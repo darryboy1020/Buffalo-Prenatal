@@ -18,7 +18,7 @@ const Testimonials = ({
     * {
       background-color: #4854a8;
       color: #fff;
-      padding: 6rem;
+      padding: 8rem;
     }
   `
 
@@ -45,6 +45,8 @@ const Testimonials = ({
       margin: 2rem;
       padding: 2rem;
       word-break: break-word;
+      height: 1%;
+      width: 10%;
     }
   `
 

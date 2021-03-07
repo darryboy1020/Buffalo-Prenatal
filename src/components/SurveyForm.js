@@ -180,7 +180,7 @@ const SurverForm = ({ textItems, radioItems }) => {
         {textItems ? getTextInputs(textItems) : null}
         {radioItems ? getRadioButtons(radioItems) : null}
         <Button className={buttonClass} variant='contained' type='submit'>
-          Sumbit
+          Continue to the next survey
         </Button>
       </form>
       {containerStyle}
