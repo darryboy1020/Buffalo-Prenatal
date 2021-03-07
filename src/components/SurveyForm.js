@@ -121,13 +121,7 @@ const SurverForm = ({ textItems, radioItems }) => {
   }
 
   const getRadioButtons = (radioItems) => {
-    const arrAgree = [
-      'Strongly disagree',
-      'Disagree',
-      'Neutral',
-      'Agree',
-      'Strongly agree',
-    ]
+    console.log(radioItems)
 
     return (
       <Grid
@@ -136,41 +130,64 @@ const SurverForm = ({ textItems, radioItems }) => {
         direction='column'
         container
       >
-        {radioItems.map(({ question, name, required }, index) => {
-          return (
-            <Card className={cardContainerClass} key={question}>
-              <CardContent>
-                <Grid item>
-                  <div style={{ wordBreak: 'break-word' }}>{`${
-                    index + 1
-                  }. ${question}`}</div>
-                  {required ? <Typography color='error'>*</Typography> : null}
-                </Grid>
-                <Grid item>
-                  <RadioGroup defaultValue={arrAgree[0]} onChange={() => {}}>
-                    {arrAgree.map((answer) => {
-                      return (
-                        <Grid key={answer} alignItems='center' container>
-                          <Grid item sm={1}>
-                            <Radio
-                              name={name}
-                              value={answer}
-                              required={required}
-                              inputRef={register}
-                            />
+        {radioItems.map(
+          ({ question, name, required, questionType = 'agree' }, index) => {
+            const arrAgree =
+              questionType === 'agreeExtended'
+                ? [
+                    'Extremely Agree',
+                    'Strongly Agree',
+                    'Moderately Agree',
+                    'Slightly Agree',
+                    'Neutral',
+                    'Slightly Disagree',
+                    'Moderately Disagree',
+                    'Stronly Disagree',
+                    'Extremely Disagree',
+                  ]
+                : [
+                    'Strongly disagree',
+                    'Disagree',
+                    'Neutral',
+                    'Agree',
+                    'Strongly agree',
+                  ]
+
+            return (
+              <Card className={cardContainerClass} key={question}>
+                <CardContent>
+                  <Grid item>
+                    <div style={{ wordBreak: 'break-word' }}>{`${
+                      index + 1
+                    }. ${question}`}</div>
+                    {required ? <Typography color='error'>*</Typography> : null}
+                  </Grid>
+                  <Grid item>
+                    <RadioGroup defaultValue={arrAgree[0]} onChange={() => {}}>
+                      {arrAgree.map((answer) => {
+                        return (
+                          <Grid key={answer} alignItems='center' container>
+                            <Grid item sm={1}>
+                              <Radio
+                                name={name}
+                                value={answer}
+                                required={required}
+                                inputRef={register}
+                              />
+                            </Grid>
+                            <Grid item sm={11}>
+                              <Typography>{answer}</Typography>
+                            </Grid>
                           </Grid>
-                          <Grid item sm={11}>
-                            <Typography>{answer}</Typography>
-                          </Grid>
-                        </Grid>
-                      )
-                    })}
-                  </RadioGroup>
-                </Grid>
-              </CardContent>
-            </Card>
-          )
-        })}
+                        )
+                      })}
+                    </RadioGroup>
+                  </Grid>
+                </CardContent>
+              </Card>
+            )
+          }
+        )}
       </Grid>
     )
   }
