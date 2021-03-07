@@ -4,44 +4,19 @@ var cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const Data = require('./data')
-const MongoClient = require('mongodb').MongoClient
 
 const API_PORT = 3001
 const app = express()
 app.use(cors())
 const router = express.Router()
 
+// this is our MongoDB database
 const MONGO_DB_USER = 'Buffalo_Prenatal_Admin'
 const MONGO_DB_PASSWORD = 'bvl1HMEuI6sicvdE'
-
-// this is our MongoDB database
 const dbRoute = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@cluster0.rj6xf.mongodb.net/Cluster0?retryWrites=true&w=majority`
 
 // connects our back end code with the database
-// mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
-
-const client = new MongoClient(dbRoute, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-
-client.connect((err) => {
-  if (err) {
-    console.log(err)
-  }
-  const collection = client.db('surveyResults').collection('test')
-  // perform actions on the collection object
-  client.close()
-})
-
-// mongoose.connect(dbRoute, {
-//   auth: {
-//     user: MONGO_DB_USER,
-//     password: MONGO_DB_PASSWORD,
-//   },
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// })
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
 
 let db = mongoose.connection
 
@@ -49,6 +24,12 @@ db.once('open', () => console.log('connected to the database'))
 
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+// (optional) only made for logging and
+// bodyParser, parses the request body to be a readable json format
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(logger('dev'))
 
 // this is our get method
 // this method fetches all available data in our database
@@ -79,12 +60,11 @@ router.delete('/deleteData', (req, res) => {
   })
 })
 
-// this is our create method
+// this is our create methid
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
   let data = new Data()
-  console.log('****************************************')
-  console.log(req.body)
+
   const { id, message } = req.body
 
   if ((!id && id !== 0) || !message) {
