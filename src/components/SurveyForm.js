@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button'
 import { useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import emailjs from 'emailjs-com'
+import axios from 'axios'
+import useDatabase from '../hooks/useDatabase'
 
 const SurverForm = ({ textItems, radioItems }) => {
   const SERVICE_ID = 'contact_service'
@@ -18,17 +20,20 @@ const SurverForm = ({ textItems, radioItems }) => {
 
   const { register, handleSubmit, errors } = useForm()
 
+  const { getDataFromDb, putDataToDB, deleteFromDB, updateDB } = useDatabase()
+
   const onSubmit = (data) => {
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
-      (result) => {
-        console.log(result.text)
-        console.log('Success...')
-      },
-      (error) => {
-        console.log(error.text)
-        console.log('Failed...')
-      }
-    )
+    // emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
+    //   (result) => {
+    //     console.log(result.text)
+    //     console.log('Success...')
+    //   },
+    //   (error) => {
+    //     console.log(error.text)
+    //     console.log('Failed...')
+    //   }
+    // )
+    putDataToDB(data)
   }
 
   const { className: containerClass, styles: containerStyle } = css.resolve`

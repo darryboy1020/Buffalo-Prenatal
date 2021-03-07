@@ -13,7 +13,7 @@ const router = express.Router()
 // this is our MongoDB database
 const MONGO_DB_USER = 'Buffalo_Prenatal_Admin'
 const MONGO_DB_PASSWORD = 'bvl1HMEuI6sicvdE'
-const dbRoute = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@cluster0.rj6xf.mongodb.net/Cluster0?retryWrites=true&w=majority`
+const dbRoute = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@cluster0.rj6xf.mongodb.net/SurveyResults?retryWrites=true&w=majority`
 
 // connects our back end code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -64,17 +64,10 @@ router.delete('/deleteData', (req, res) => {
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
   let data = new Data()
+  Object.keys(req.body).forEach((key) => {
+    data[key] = req.body[key]
+  })
 
-  const { id, message } = req.body
-
-  if ((!id && id !== 0) || !message) {
-    return res.json({
-      success: false,
-      error: 'INVALID INPUTS',
-    })
-  }
-  data.message = message
-  data.id = id
   data.save((err) => {
     if (err) return res.json({ success: false, error: err })
     return res.json({ success: true })
