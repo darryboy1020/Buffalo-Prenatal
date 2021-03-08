@@ -60,3 +60,83 @@ content:
       - question: The mother of [Name of Child] tells [Name of Child] what he/she is allowed and not allowed to say to me.
         required: true
         name: question11
+      - question: I am able to instill important values in my child. (Please select one circle)
+        name: question12
+        required: true
+        questionType: agreeExtended
+      - question: I am able to explain rules to my child in a way he or she can understand.(Please select one circle)
+        name: question13
+        required: true
+        questionType: agreeExtended
+      - question: I know how to encourage my child's interests in the world. (Please select one circle)
+        required: true
+        name: question14
+        questionType: agreeExtended
+      - question: I am patient with my child when he or she tests my rules I put in place. (Please select one circle)
+        required: true
+        name: question15
+        questionType: agreeExtended
+      - question: I am able to help my child cope with his or her feelings. (Please select one circle)
+        required: true
+        name: question16
+        questionType: agreeExtended
+      - question: I am a positive role model for my child. (Please select one circle)
+        required: true
+        name: question17
+        questionType: agreeExtended
+      - question: I can always think of fun things to do with my child. (Please select one circle)
+        required: true
+        name: question18
+        questionType: agreeExtended
+      - question: I know when it is time to step in and protect my child from harm. (Please select one circle)
+        required: true
+        name: question19
+        questionType: agreeExtended
+      - question: I know how to play with my child at his or her level. (Please select one circle)
+        required: true
+        name: question20
+        questionType: agreeExtended
+      - question: I am mentally and emotionally there for my child when he or she needs me. (Please select one circle)
+        required: true
+        name: question21
+        questionType: agreeExtended
+      - question: I know how to arrange my home to minimize safety hazards. (Please select one circle)
+        required: true
+        name: question22
+        questionType: agreeExtended
+      - question: I can sense when my child is starting to feel frustrated or upset. (Please select one circle)
+        required: true
+        name: question23
+        questionType: agreeExtended
+      - question: I am able to make time to spend with my child. (Please select one circle)
+        required: true
+        name: question24
+        questionType: agreeExtended
+      - question: I have a lot of difficulty balancing the needs of my work with the needs of my family. (Please select one circle)
+        required: true
+        name: question25
+        questionType: agreeExtended
+      - question: I'm usually able to do my fair share of the childcare responsibilities. (Please select one circle)
+        required: true
+        name: question26
+        questionType: agreeExtended
+      - question: I can provide the daily care my child needs. (Please select one circle)
+        required: true
+        name: question27
+        questionType: agreeExtended
+      - question: I am able to provide financially for my child in the long term. (Please select one circle)
+        required: true
+        name: question28
+        questionType: agreeExtended
+      - question: I am able to meet the immediate financial needs of my family. (Please select one circle)
+        required: true
+        name: question29
+        questionType: agreeExtended
+      - question: Even in tough times, I am able to provide financially for my family. (Please select one circle)
+        required: true
+        name: question30
+        questionType: agreeExtended
+      - question: I usually am able to put money aside for my child's future. (Please select one circle)
+        required: true
+        name: question31
+        questionType: agreeExtended

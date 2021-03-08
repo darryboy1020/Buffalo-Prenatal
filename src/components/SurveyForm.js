@@ -13,7 +13,7 @@ import emailjs from 'emailjs-com'
 import axios from 'axios'
 import useDatabase from '../hooks/useDatabase'
 
-const SurverForm = ({ textItems, radioItems }) => {
+const SurveyForm = ({ textItems, radioItems }) => {
   const SERVICE_ID = 'contact_service'
   const TEMPLATE_ID = 'contact_form'
   const USER_ID = 'user_axPgJ0ZCW7NtK2twyMIHZ'
@@ -121,8 +121,6 @@ const SurverForm = ({ textItems, radioItems }) => {
   }
 
   const getRadioButtons = (radioItems) => {
-    console.log(radioItems)
-
     return (
       <Grid
         className={containerClass}
@@ -212,4 +210,4 @@ const SurverForm = ({ textItems, radioItems }) => {
     </Grid>
   )
 }
-export default SurverForm
+export default SurveyForm
