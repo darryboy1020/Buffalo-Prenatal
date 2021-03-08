@@ -33,7 +33,9 @@ const SurveyForm = ({ textItems, radioItems }) => {
     //     console.log('Failed...')
     //   }
     // )
-    putDataToDB(data)
+    putDataToDB(data).then((res) => {
+      console.log(res)
+    })
   }
 
   const { className: containerClass, styles: containerStyle } = css.resolve`

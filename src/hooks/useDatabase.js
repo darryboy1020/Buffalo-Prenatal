@@ -11,8 +11,7 @@ const useDatabase = () => {
   // our put method that uses our backend api
   // to create new query into our data base
   const putDataToDB = (data) => {
-    console.log(data)
-    axios.post('http://localhost:3001/api/putData', data)
+    return axios.post('http://localhost:3001/api/putData', data)
   }
 
   // our delete method that uses our backend api
