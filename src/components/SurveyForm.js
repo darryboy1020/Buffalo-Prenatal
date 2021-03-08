@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
@@ -12,8 +12,9 @@ import TextField from '@material-ui/core/TextField'
 import emailjs from 'emailjs-com'
 import axios from 'axios'
 import useDatabase from '../hooks/useDatabase'
+import { Link, Redirect } from 'react-router-dom'
 
-const SurverForm = ({ textItems, radioItems }) => {
+const SurverForm = ({ textItems, radioItems, surveySubmit }) => {
   const SERVICE_ID = 'contact_service'
   const TEMPLATE_ID = 'contact_form'
   const USER_ID = 'user_axPgJ0ZCW7NtK2twyMIHZ'
@@ -21,8 +22,10 @@ const SurverForm = ({ textItems, radioItems }) => {
   const { register, handleSubmit, errors } = useForm()
 
   const { getDataFromDb, putDataToDB, deleteFromDB, updateDB } = useDatabase()
-
-  const onSubmit = (data) => {
+  const [redirect, setRedirect] = useState(false)
+  const [data, setData] = useState({})
+  console.log(data)
+  const onSubmit = (submitData) => {
     // emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
     //   (result) => {
     //     console.log(result.text)
@@ -33,7 +36,17 @@ const SurverForm = ({ textItems, radioItems }) => {
     //     console.log('Failed...')
     //   }
     // )
-    putDataToDB(data)
+    // putDataToDB(data)
+    console.log('in submit')
+    // console.log(data)
+    if (surveySubmit) {
+      console.log('cool')
+      var test = { ...data, ...submitData }
+      console.log(test)
+    } else {
+      setData(data)
+      setRedirect(true)
+    }
   }
 
   const { className: containerClass, styles: containerStyle } = css.resolve`
@@ -121,8 +134,6 @@ const SurverForm = ({ textItems, radioItems }) => {
   }
 
   const getRadioButtons = (radioItems) => {
-    console.log(radioItems)
-
     return (
       <Grid
         className={containerClass}
@@ -191,9 +202,33 @@ const SurverForm = ({ textItems, radioItems }) => {
       </Grid>
     )
   }
+  const nextSurveyButton = (
+    <Button
+      className={buttonClass}
+      component={Link}
+      to='/surveyS'
+      variant='contained'
+    >
+      Continue to the next survey
+    </Button>
+  )
+
+  const submitButton = (
+    <Button className={buttonClass} variant='contained' type='submit'>
+      {surveySubmit ? 'Submit Survey' : 'Continue to the next survey'}
+    </Button>
+  )
 
   return (
     <Grid container justify='center'>
+      {redirect ? (
+        <Redirect
+          to={{
+            pathname: '/surveyS',
+            data,
+          }}
+        />
+      ) : null}
       <form
         id='surveyForm'
         className={formClass}
@@ -201,9 +236,7 @@ const SurverForm = ({ textItems, radioItems }) => {
       >
         {textItems ? getTextInputs(textItems) : null}
         {radioItems ? getRadioButtons(radioItems) : null}
-        <Button className={buttonClass} variant='contained' type='submit'>
-          Continue to the next survey
-        </Button>
+        {submitButton}
       </form>
       {containerStyle}
       {cardContainerStyle}
