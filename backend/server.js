@@ -60,62 +60,11 @@ router.delete('/deleteData', (req, res) => {
   })
 })
 
-// q1: SD 1
-// q2: SD 1
-// q3: SD 4
-
-// q4: SD 1
-// q5: SD 1
-// q6: SD 1
-// q7: SD 1
-// q8: SD 1
-
-// q9: SD 4
-// q10: SD 4
-// q11: SD 4
-
-// q12: SA 9
-// q13: SA 9
-// q14: SA 9
-// q15: SA 9
-// q16: SA 9
-// q17: SA 9
-// q18: SA 9
-// q19: SA 9
-// q20: SA 9
-// q21: SA 9
-// q22: SA 9
-// q23: SA 9
-
-// q24: SA 9
-// q25: SA 1
-// q26: SA 9
-// q27: SA 9
-
-// q28: SA 9
-// q29: SA 9
-// q30: SA 9
-// q31: SA 9
-
 // this is our create methid
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
-  var agreeDict = {
-    'Strongly disagree': 1,
-    Disagree: 2,
-    Neutral: 3,
-    Agree: 4,
-    'Stongly agree': 5,
-  }
   let data = new Data()
-  var responseData = {
-    undermining: 0, //q 1-3
-    allianceFactor: 0, //q 4-8
-    gateKeeping: 0, //q 9-11
-    positiveEngagement: 0, //q 12-23
-    directCare: 0, //q 24-27
-    financialProvision: 0, //q 28 - 31
-  }
+
   Object.keys(req.body).forEach((key) => {
     data[key] = req.body[key]
   })

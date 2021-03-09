@@ -38,6 +38,12 @@ const DataSchema = new Schema(
     question29: String,
     question30: String,
     question31: String,
+    undermining: Number,
+    allianceFactor: Number,
+    gateKeeping: Number,
+    positiveEngagement: Number,
+    directCare: Number,
+    financialProvision: Number,
   },
   { timestamps: true, collection: 'results' }
 )

@@ -33,7 +33,103 @@ const SurveyForm = ({ textItems, radioItems }) => {
     //     console.log('Failed...')
     //   }
     // )
-    putDataToDB(data).then((res) => {
+
+    // q1: SD 1
+    // q2: SD 1
+    // q3: SD 4
+
+    // q4: SD 1
+    // q5: SD 1
+    // q6: SD 1
+    // q7: SD 1
+    // q8: SD 1
+
+    // q9: SD 4
+    // q10: SD 4
+    // q11: SD 4
+
+    // q12: SA 9
+    // q13: SA 9
+    // q14: SA 9
+    // q15: SA 9
+    // q16: SA 9
+    // q17: SA 9
+    // q18: SA 9
+    // q19: SA 9
+    // q20: SA 9
+    // q21: SA 9
+    // q22: SA 9
+    // q23: SA 9
+
+    // q24: SA 9
+    // q25: SA 1
+    // q26: SA 9
+    // q27: SA 9
+
+    // q28: SA 9
+    // q29: SA 9
+    // q30: SA 9
+    // q31: SA 9
+
+    var results = {
+      undermining: 0, //q 1-3
+      allianceFactor: 0, //q 4-8
+      gateKeeping: 0, //q 9-11
+      positiveEngagement: 0, //q 12-23
+      directCare: 0, //q 24-27
+      financialProvision: 0, //q 28 - 31
+    }
+
+    var sdMaxArr = ['question3', 'question9', 'question10', 'question11']
+    var sdMinArr = ['question25']
+
+    Object.keys(data).forEach((key) => {
+      var inverseScore = sdMaxArr.includes(key) || sdMinArr.includes(key)
+      let arrAgree = {
+        'Strongly disagree': inverseScore ? 5 : 1,
+        Disagree: inverseScore ? 4 : 2,
+        Neutral: 3,
+        Agree: inverseScore ? 2 : 4,
+        'Strongly agree': inverseScore ? 1 : 5,
+      }
+
+      let arrAgreeExtended = {
+        'Extremely Agree': inverseScore ? 1 : 9,
+        'Strongly Agree': inverseScore ? 2 : 8,
+        'Moderately Agree': inverseScore ? 3 : 7,
+        'Slightly Agree': inverseScore ? 4 : 6,
+        Neutral: 5,
+        'Slightly Disagree': inverseScore ? 6 : 4,
+        'Moderately Disagree': inverseScore ? 7 : 3,
+        'Strongly Disagree': inverseScore ? 8 : 2,
+        'Extremely Disagree': inverseScore ? 9 : 1,
+      }
+      if (key.includes('question')) {
+        var questionNumber = parseInt(key.substring(8))
+        let value = data[key]
+
+        if (questionNumber <= 3) {
+          results.undermining += arrAgree[value]
+        } else if (questionNumber > 3 && questionNumber <= 8) {
+          results.allianceFactor += arrAgree[value]
+        } else if (questionNumber > 8 && questionNumber <= 11) {
+          results.gateKeeping += arrAgree[value]
+        } else if (questionNumber > 11 && questionNumber <= 23) {
+          results.positiveEngagement += arrAgreeExtended[value]
+        } else if (questionNumber > 23 && questionNumber <= 27) {
+          results.directCare += arrAgreeExtended[value]
+        } else if (questionNumber > 27 && questionNumber <= 31) {
+          results.financialProvision += arrAgreeExtended[value]
+        }
+      }
+    })
+
+    var postData = {
+      ...data,
+      ...results,
+    }
+
+    putDataToDB(postData).then((res) => {
       console.log(res)
     })
   }
@@ -142,7 +238,7 @@ const SurveyForm = ({ textItems, radioItems }) => {
                     'Neutral',
                     'Slightly Disagree',
                     'Moderately Disagree',
-                    'Stronly Disagree',
+                    'Strongly Disagree',
                     'Extremely Disagree',
                   ]
                 : [
