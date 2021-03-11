@@ -65,9 +65,7 @@ router.delete('/deleteData', (req, res) => {
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
   let data = new Data()
-
-  const myChart = new QuickChart()
-
+  console.log(req.body)
   const labels = [
     'Undermining',
     'Alliance Factor',
@@ -77,7 +75,7 @@ router.post('/putData', (req, res) => {
     'Financial Provision',
   ]
 
-  var chartUrls = Object.keys(req.body.chartUrl).map((key, index) => {
+  var chartUrls = Object.keys(req.body.chartresults).map((key, index) => {
     const myChart = new QuickChart()
 
     myChart
@@ -97,7 +95,7 @@ router.post('/putData', (req, res) => {
   })
 
   Object.keys(req.body).forEach((key) => {
-    if (key != 'chartresults') {
+    if (key !== 'chartresults') {
       data[key] = req.body[key]
     }
   })
