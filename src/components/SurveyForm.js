@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
@@ -21,6 +21,8 @@ const SurveyForm = ({ textItems, radioItems }) => {
   const { register, handleSubmit, errors } = useForm()
 
   const { getDataFromDb, putDataToDB, deleteFromDB, updateDB } = useDatabase()
+
+  const [showChart, setShowChart] = useState([])
 
   const onSubmit = (data) => {
     // emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
@@ -127,10 +129,12 @@ const SurveyForm = ({ textItems, radioItems }) => {
     var postData = {
       ...data,
       ...results,
+      chartresults: results,
     }
 
     putDataToDB(postData).then((res) => {
-      console.log(res)
+      console.log(res.data)
+      setShowChart(res.data.chartUrls)
     })
   }
 
@@ -288,6 +292,12 @@ const SurveyForm = ({ textItems, radioItems }) => {
     )
   }
 
+  const showCharts = (arr) => {
+    return arr.map((url) => {
+      return <img scr={url} alt={url} />
+    })
+  }
+
   return (
     <Grid container justify='center'>
       <form
@@ -300,6 +310,7 @@ const SurveyForm = ({ textItems, radioItems }) => {
         <Button className={buttonClass} variant='contained' type='submit'>
           Continue to the next survey
         </Button>
+        {showChart.length < 1 ? showCharts(showChart) : null}
       </form>
       {containerStyle}
       {cardContainerStyle}

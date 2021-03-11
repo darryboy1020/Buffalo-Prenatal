@@ -5,7 +5,9 @@ const useDatabase = () => {
   // our first get method that uses our backend api to
   // fetch data from our data base
   const getDataFromDb = () => {
-    fetch('http://localhost:3001/api/getData').then((data) => data.json())
+    return fetch('http://localhost:3001/api/getData').then((data) =>
+      data.json()
+    )
   }
 
   // our put method that uses our backend api

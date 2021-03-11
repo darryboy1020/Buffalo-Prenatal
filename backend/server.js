@@ -4,6 +4,7 @@ var cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const Data = require('./data')
+const QuickChart = require('quickchart-js')
 
 const API_PORT = 3001
 const app = express()
@@ -65,13 +66,45 @@ router.delete('/deleteData', (req, res) => {
 router.post('/putData', (req, res) => {
   let data = new Data()
 
+  const myChart = new QuickChart()
+
+  const labels = [
+    'Undermining',
+    'Alliance Factor',
+    'Gate Keeping',
+    'Positive Engagement',
+    'Direct Care',
+    'Financial Provision',
+  ]
+
+  var chartUrls = Object.keys(req.body.chartUrl).map((key, index) => {
+    const myChart = new QuickChart()
+
+    myChart
+      .setConfig({
+        type: 'bar',
+        data: {
+          labels: [labels[index]],
+          datasets: [{ label: labels[index], data: [req.body[key]] }],
+        },
+      })
+      .setWidth(400)
+      .setHeight(200)
+      .setBackgroundColor('transparent')
+
+    // Print the chart URL
+    return myChart.getUrl()
+  })
+
   Object.keys(req.body).forEach((key) => {
-    data[key] = req.body[key]
+    if (key != 'chartresults') {
+      data[key] = req.body[key]
+    }
   })
 
   data.save((err) => {
     if (err) return res.json({ success: false, error: err })
-    return res.json({ success: true })
+    return res.json({ success: true, chartUrls })
   })
 })
 
