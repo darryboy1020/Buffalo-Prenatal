@@ -7,18 +7,18 @@ const Data = require('./data')
 const QuickChart = require('quickchart-js')
 const mailgunGenerator = require('mailgun-js')
 const mailgun = mailgunGenerator({
-  apiKey: 'abc123',
-  domain: 'xyz.com',
+  apiKey: 'AIzaSyAQUwuuiprTJXaGeYkDSVNwJRiDaJUeBv4',
+  domain: 'gmail.com',
 })
 
-// const data = {
+// const email = {
 //   from: 'myemail@xyz.com',
 //   to: 'toemail@xyz.com',
 //   subject: 'Updated Chart Report',
-//   html: message,
+//   html: ' <h1> Darrien Johnson<h1/>',
 // };
 
-// mailgun.messages().send(data, (err, body) => {
+// mailgun.messages().send(email, (err, body) => {
 //   console.log(body);
 // });
 
@@ -80,6 +80,17 @@ router.delete('/deleteData', (req, res) => {
 // this is our create methid
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
+  const email = {
+    from: 'darrien.johnson@gmail.com',
+    to: 'darryboy1020@gmail.com',
+    subject: 'Updated Chart Report',
+    html: ' <h1> Darrien Johnson<h1/>',
+  }
+
+  mailgun.messages().send(email, (err, body) => {
+    console.log(body)
+  })
+
   let data = new Data()
   const labels = [
     'Undermining',
