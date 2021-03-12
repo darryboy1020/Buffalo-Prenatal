@@ -5,11 +5,11 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const Data = require('./data')
 const QuickChart = require('quickchart-js')
-const mailgunGenerator = require('mailgun-js')
-const mailgun = mailgunGenerator({
-  apiKey: 'abc123',
-  domain: 'xyz.com',
-})
+// const mailgunGenerator = require('mailgun-js')
+// const mailgun = mailgunGenerator({
+//   apiKey: 'abc123',
+//   domain: 'xyz.com',
+// })
 
 // const data = {
 //   from: 'myemail@xyz.com',
