@@ -5,6 +5,22 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const Data = require('./data')
 const QuickChart = require('quickchart-js')
+const mailgunGenerator = require('mailgun-js')
+const mailgun = mailgunGenerator({
+  apiKey: 'abc123',
+  domain: 'xyz.com',
+})
+
+// const data = {
+//   from: 'myemail@xyz.com',
+//   to: 'toemail@xyz.com',
+//   subject: 'Updated Chart Report',
+//   html: message,
+// };
+
+// mailgun.messages().send(data, (err, body) => {
+//   console.log(body);
+// });
 
 const API_PORT = 3001
 const app = express()
@@ -65,7 +81,6 @@ router.delete('/deleteData', (req, res) => {
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
   let data = new Data()
-  console.log(req.body)
   const labels = [
     'Undermining',
     'Alliance Factor',
@@ -75,12 +90,29 @@ router.post('/putData', (req, res) => {
     'Financial Provision',
   ]
 
+  const maxValues = [15, 25, 15, 108, 36]
+
   var chartUrls = Object.keys(req.body.chartresults).map((key, index) => {
     const myChart = new QuickChart()
+
+    const stepSize = index < 3 ? 5 : 9
 
     myChart
       .setConfig({
         type: 'bar',
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  min: 0,
+                  max: maxValues[index],
+                  stepSize: stepSize,
+                },
+              },
+            ],
+          },
+        },
         data: {
           labels: [labels[index]],
           datasets: [{ label: labels[index], data: [req.body[key]] }],

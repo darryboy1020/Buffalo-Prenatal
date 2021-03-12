@@ -39,6 +39,7 @@ const SurveyForm = ({ textItems, radioItems }) => {
     // q1: SD 1
     // q2: SD 1
     // q3: SD 4
+    //max: 15
 
     // q4: SD 1
     // q5: SD 1
@@ -46,9 +47,12 @@ const SurveyForm = ({ textItems, radioItems }) => {
     // q7: SD 1
     // q8: SD 1
 
+    //max 25
+
     // q9: SD 4
     // q10: SD 4
     // q11: SD 4
+    // max: 15
 
     // q12: SA 9
     // q13: SA 9
@@ -62,16 +66,21 @@ const SurveyForm = ({ textItems, radioItems }) => {
     // q21: SA 9
     // q22: SA 9
     // q23: SA 9
+    //max: 108
 
     // q24: SA 9
     // q25: SA 1
     // q26: SA 9
     // q27: SA 9
 
+    //max : 36
+
     // q28: SA 9
     // q29: SA 9
     // q30: SA 9
     // q31: SA 9
+
+    //max: 36
 
     var results = {
       undermining: 0, //q 1-3
