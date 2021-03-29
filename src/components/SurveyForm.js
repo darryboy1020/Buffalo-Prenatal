@@ -25,6 +25,10 @@ const SurveyForm = ({ textItems, radioItems }) => {
   const [showChart, setShowChart] = useState(null)
 
   const onSubmit = (data) => {
+
+    
+
+
     // emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, '#surveyForm', USER_ID).then(
     //   (result) => {
     //     console.log(result.text)
@@ -322,7 +326,7 @@ const SurveyForm = ({ textItems, radioItems }) => {
         {textItems ? getTextInputs(textItems) : null}
         {radioItems ? getRadioButtons(radioItems) : null}
         <Button className={buttonClass} variant='contained' type='submit'>
-          Continue to the next survey
+          Submit Survey
         </Button>
 
         {showChart ? showCharts(showChart) : null}

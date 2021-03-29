@@ -5,7 +5,7 @@ const useDatabase = () => {
   // our first get method that uses our backend api to
   // fetch data from our data base
   const getDataFromDb = () => {
-    return fetch('http://localhost:3001/api/getData').then((data) =>
+    return fetch('https://bfiassessment.com/').then((data) =>
       data.json()
     )
   }
@@ -13,7 +13,7 @@ const useDatabase = () => {
   // our put method that uses our backend api
   // to create new query into our data base
   const putDataToDB = (data) => {
-    return axios.post('http://localhost:3001/api/putData', data)
+    return axios.post('https://bfiassessment.com/', data)
   }
 
   // our delete method that uses our backend api
@@ -27,7 +27,7 @@ const useDatabase = () => {
     //   }
     // })
 
-    axios.delete('http://localhost:3001/api/deleteData', {
+    axios.delete('https://bfiassessment.com/', {
       data: {
         id: objIdToDelete,
       },
@@ -45,7 +45,7 @@ const useDatabase = () => {
     //   }
     // })
 
-    axios.post('http://localhost:3001/api/updateData', {
+    axios.post('https://bfiassessment.com/', {
       id: objIdToUpdate,
       update: { message: updateToApply },
     })

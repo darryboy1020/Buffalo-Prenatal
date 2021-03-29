@@ -5,11 +5,38 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const Data = require('./data')
 const QuickChart = require('quickchart-js')
-const mailgunGenerator = require('mailgun-js')
-const mailgun = mailgunGenerator({
-  apiKey: 'abc123',
-  domain: 'xyz.com',
-})
+// const mailgunGenerator = require('mailgun-js')
+// const mailgun = mailgunGenerator({
+//   apiKey: 'AIzaSyD_K5i9PKiNuUUIdR-3Rp1E8qOv65-_cUg',
+//   domain: 'bfiassessment.com',
+// })
+
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandboxf214c4b56db24c1ba78620f66beae98d.mailgun.org";
+const mg = mailgun({apiKey: "5a3f74c73e3f74b8720f75c681274584-b6d086a8-02fbf468", domain: DOMAIN});
+const data = {
+	from: "Mailgun Sandbox <postmaster@sandboxf214c4b56db24c1ba78620f66beae98d.mailgun.org>",
+	to: "darrien.johnson@gmail.com",
+	subject: "FatherHood Initiative Survey Results",
+  text: 
+  "<h1>Based on your results of the surveys we have putting together a rubric of your current levels of engagement in the focal categories. These results are not permanent and are subject to change as you progress through the course. </h1>",
+    
+  html: 
+  "<h1> Based on your results of the surveys we have putting together a rubric of your current levels of engagement in the focal categories. These results are not permanent and are subject to change as you progress through the course.</h1>"
+    
+};
+// mg.messages().send(data, function (error, body) {
+// 	console.log(body);
+// });
+
+// You can see a record of this email in your logs: https://app.mailgun.com/app/logs.
+
+// You can send up to 300 emails/day from this sandbox server.
+// Next, you should add your own domain so you can send 10000 emails/month for free.
+
+
+
+
 
 // const data = {
 //   from: 'myemail@xyz.com',
@@ -47,7 +74,20 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
-
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandboxf214c4b56db24c1ba78620f66beae98d.mailgun.org";
+const mg = mailgun({apiKey: "5a3f74c73e3f74b8720f75c681274584-b6d086a8-02fbf468", domain: DOMAIN});
+const mailData = {
+	from: "Mailgun Sandbox <postmaster@sandboxf214c4b56db24c1ba78620f66beae98d.mailgun.org>",
+	to: "darrien.johnson@gmail.com",
+	subject: "FatherHood Initiative Survey Results",
+  text: 
+  "<h1>Based on your results of the surveys we have putting together a rubric of your current levels of engagement in the focal categories. These results are not permanent and are subject to change as you progress through the course. </h1>",
+    
+  html: 
+  "<h1> Based on your results of the surveys we have putting together a rubric of your current levels of engagement in the focal categories. These results are not permanent and are subject to change as you progress through the course.</h1>"
+    
+};
 // this is our get method
 // this method fetches all available data in our database
 router.get('/getData', (req, res) => {
@@ -80,6 +120,9 @@ router.delete('/deleteData', (req, res) => {
 // this is our create methid
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
+  mg.messages().send(mailData, function (error, body) {
+    console.log(body);
+  });
   let data = new Data()
   const labels = [
     'Undermining',
