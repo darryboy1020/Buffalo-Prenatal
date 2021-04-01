@@ -10,7 +10,7 @@ const mailgun = mailgunGenerator({
   apiKey: 'abc123',
   domain: 'xyz.com',
 })
-
+//test
 // const data = {
 //   from: 'myemail@xyz.com',
 //   to: 'toemail@xyz.com',
