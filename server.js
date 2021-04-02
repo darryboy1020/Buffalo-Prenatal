@@ -22,14 +22,6 @@ const mailgun = mailgunGenerator({
 //   console.log(body);
 // });
 
-//serve static assets if in production
-if(process.env.NODE_ENV === 'production'){
-  //set static folder
-  app.use(express.static('client/dist'));
-  app.get('*', (req, res)=>{
-      res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.htmls'))
-  });
-}
 
 const API_PORT = process.env.PORT ||  3001
 const app = express()
@@ -56,6 +48,15 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
+
+//serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('client/dist'));
+  app.get('*', (req, res)=>{
+      res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.htmls'))
+  });
+}
 
 // this is our get method
 // this method fetches all available data in our database
