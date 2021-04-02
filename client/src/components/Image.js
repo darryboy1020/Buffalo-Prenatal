@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import css from 'styled-jsx/css'
 
 const Image = ({ href, alt = '', inherit }) => {
-  const baseURL = href ? `${window.location.origin}/public/images/` : null
+  const baseURL = href ? `${window.location.origin}/client/public/images/` : null
 
   const image = baseURL ? `${baseURL}${href}` : null
 
