@@ -50,6 +50,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(logger('dev'))
 
+// append /api for our http requests
+app.use('/api', router)
+
 //serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
   //set static folder
@@ -148,9 +151,6 @@ router.post('/putData', (req, res) => {
     return res.json({ success: true, chartUrls })
   })
 })
-
-// append /api for our http requests
-app.use('/api', router)
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`))
