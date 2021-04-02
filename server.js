@@ -22,6 +22,15 @@ const mailgun = mailgunGenerator({
 //   console.log(body);
 // });
 
+//serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('client/dist'));
+  app.get('*', (req, res)=>{
+      res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.htmls'))
+  });
+}
+
 const API_PORT = process.env.PORT ||  3001
 const app = express()
 app.use(cors())
