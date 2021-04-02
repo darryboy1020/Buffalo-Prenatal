@@ -6,6 +6,7 @@ const logger = require('morgan')
 const Data = require('./data')
 const QuickChart = require('quickchart-js')
 const mailgunGenerator = require('mailgun-js')
+const path = require('path')
 const mailgun = mailgunGenerator({
   apiKey: 'abc123',
   domain: 'xyz.com',
