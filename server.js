@@ -1,100 +1,74 @@
-const mongoose = require('mongoose')
-const express = require('express')
-var cors = require('cors')
-const bodyParser = require('body-parser')
-const logger = require('morgan')
-const Data = require('./data')
-const QuickChart = require('quickchart-js')
-const mailgunGenerator = require('mailgun-js')
-const path = require('path')
-const mailgun = mailgunGenerator({
-  apiKey: 'abc123',
-  domain: 'xyz.com',
-})
-//test
-// const data = {
-//   from: 'myemail@xyz.com',
-//   to: 'toemail@xyz.com',
-//   subject: 'Updated Chart Report',
-//   html: message,
-// };
+const mongoose = require('mongoose');
+const express = require('express');
+const cors = require('cors');
+const logger = require('morgan');
+const Data = require('./data');
+const QuickChart = require('quickchart-js');
+const path = require('path');
+const nodemailer = require('nodemailer');
 
-// mailgun.messages().send(data, (err, body) => {
-//   console.log(body);
-// });
-
-
-const API_PORT = process.env.PORT ||  3001
-const app = express()
-app.use(cors())
-const router = express.Router()
+const API_PORT = process.env.PORT || 3001;
+const app = express();
+app.use(cors());
+const router = express.Router();
 
 // this is our MongoDB database
-const MONGO_DB_USER = 'Buffalo_Prenatal_Admin'
-const MONGO_DB_PASSWORD = 'bvl1HMEuI6sicvdE'
-const dbRoute = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@cluster0.rj6xf.mongodb.net/SurveyResults?retryWrites=true&w=majority`
+const MONGO_DB_USER = 'Buffalo_Prenatal_Admin';
+const MONGO_DB_PASSWORD = 'bvl1HMEuI6sicvdE';
+const dbRoute = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@cluster0.rj6xf.mongodb.net/SurveyResults?retryWrites=true&w=majority`;
 
 // connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let db = mongoose.connection
+let db = mongoose.connection;
 
-db.once('open', () => console.log('connected to the database'))
+db.once('open', () => console.log('connected to the database'));
 
 // checks if connection with the database is successful
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // (optional) only made for logging and
 // bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(logger('dev'))
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(logger('dev'));
 
 // append /api for our http requests
-app.use('/api', router)
+app.use('/api', router);
 
 //serve static assets if in production
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   //set static folder
   app.use(express.static('client/dist'));
-  app.get('*', (req, res)=>{
-      res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
   });
 }
 
-// this is our get method
-// this method fetches all available data in our database
-router.get('/getData', (req, res) => {
-  Data.find((err, data) => {
-    if (err) return res.json({ success: false, error: err })
-    return res.json({ success: true, data: data })
-  })
-})
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'bolanosjohn21@gmail.com',
+    pass: 'Italy2006!',
+  },
+});
 
-// this is our update method
-// this method overwrites existing data in our database
-router.post('/updateData', (req, res) => {
-  const { id, update } = req.body
-  Data.findByIdAndUpdate(id, update, (err) => {
-    if (err) return res.json({ success: false, error: err })
-    return res.json({ success: true })
-  })
-})
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!',
+};
 
-// this is our delete method
-// this method removes existing data in our database
-router.delete('/deleteData', (req, res) => {
-  const { id } = req.body
-  Data.findByIdAndRemove(id, (err) => {
-    if (err) return res.send(err)
-    return res.json({ success: true })
-  })
-})
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
 
-// this is our create methid
-// this method adds new data in our database
-router.post('/putData', (req, res) => {
-  let data = new Data()
+const getChartUrl = (body) => {
   const labels = [
     'Undermining',
     'Alliance Factor',
@@ -102,14 +76,14 @@ router.post('/putData', (req, res) => {
     'Positive Engagement',
     'Direct Care',
     'Financial Provision',
-  ]
+  ];
 
-  const maxValues = [15, 25, 15, 108, 36]
+  const maxValues = [15, 25, 15, 108, 36];
 
-  var chartUrls = Object.keys(req.body.chartresults).map((key, index) => {
-    const myChart = new QuickChart()
+  return Object.keys(body.chartresults).map((key, index) => {
+    const myChart = new QuickChart();
 
-    const stepSize = index < 3 ? 5 : 9
+    const stepSize = index < 3 ? 5 : 9;
 
     myChart
       .setConfig({
@@ -129,28 +103,65 @@ router.post('/putData', (req, res) => {
         },
         data: {
           labels: [labels[index]],
-          datasets: [{ label: labels[index], data: [req.body[key]] }],
+          datasets: [{ label: labels[index], data: [body[key]] }],
         },
       })
       .setWidth(400)
       .setHeight(200)
-      .setBackgroundColor('transparent')
+      .setBackgroundColor('transparent');
 
     // Print the chart URL
-    return myChart.getUrl()
-  })
+    return myChart.getUrl();
+  });
+};
+
+// this is our get method
+// this method fetches all available data in our database
+router.get('/getData', (req, res) => {
+  Data.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+// this is our update method
+// this method overwrites existing data in our database
+router.post('/updateData', (req, res) => {
+  const { id, update } = req.body;
+  Data.findByIdAndUpdate(id, update, (err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+// this is our delete method
+// this method removes existing data in our database
+router.delete('/deleteData', (req, res) => {
+  const { id } = req.body;
+  Data.findByIdAndRemove(id, (err) => {
+    if (err) return res.send(err);
+    return res.json({ success: true });
+  });
+});
+
+// this is our create methid
+// this method adds new data in our database
+router.post('/putData', (req, res) => {
+  let data = new Data();
+
+  const chartUrls = getChartUrl(req.body);
 
   Object.keys(req.body).forEach((key) => {
     if (key !== 'chartresults') {
-      data[key] = req.body[key]
+      data[key] = req.body[key];
     }
-  })
+  });
 
   data.save((err) => {
-    if (err) return res.json({ success: false, error: err })
-    return res.json({ success: true, chartUrls })
-  })
-})
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, chartUrls });
+  });
+});
 
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`))
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
