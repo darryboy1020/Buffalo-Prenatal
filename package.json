@@ -21,6 +21,7 @@
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
     "nodemailer": "^6.5.0",
+    "pdf-creator-node": "^2.2.2",
     "quickchart-js": "^1.0.6"
   }
 }

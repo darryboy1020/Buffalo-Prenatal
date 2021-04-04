@@ -6,6 +6,7 @@ const Data = require('./data');
 const QuickChart = require('quickchart-js');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const pdf = require('pdf-creator-node');
 
 const API_PORT = process.env.PORT || 3001;
 const app = express();
@@ -48,25 +49,45 @@ if (process.env.NODE_ENV === 'production') {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bolanosjohn21@gmail.com',
-    pass: 'Italy2006!',
+    user: 'buffaloprenataltest@gmail.com',
+    pass: 'buffaloprenatal!',
   },
 });
 
-var mailOptions = {
-  from: 'youremail@gmail.com',
-  to: 'myfriend@yahoo.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!',
-};
+const sendEmailResults = (chartUrls) => {
+  var imageTemplate = '';
 
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+  chartUrls.forEach((url) => {
+    imageTemplate += `<img src=${url} alt=${url} key=${url} /><br/>`;
+  });
+
+  const emailTemplate = `<h1>FATHERHOOD INITIATIVE</h1>
+  <p>Based on your results of the surveys we have putting together a
+  rubric of your current levels of engagement in the focal categories.
+  These results are not permanent and are subject to change as you
+  progress through the course.</p>${imageTemplate}`;
+
+  var mailOptions = {
+    from: 'buffaloprenataltest@gmail.com',
+    to: 'bolanosjohn21@gmail.com',
+    subject: 'Buffalo Fatherhood Initiative Survey Results',
+    html: emailTemplate,
+  };
+
+  pdfOptions = {
+    format: 'A3',
+    orientation: 'portrait',
+    border: '10mm',
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+};
 
 const getChartUrl = (body) => {
   const labels = [
@@ -161,6 +182,8 @@ router.post('/putData', (req, res) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, chartUrls });
   });
+
+  sendEmailResults(chartUrls);
 });
 
 // launch our backend into a port
