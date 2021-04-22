@@ -322,7 +322,7 @@ const SurveyForm = ({ textItems, radioItems }) => {
         {textItems ? getTextInputs(textItems) : null}
         {radioItems ? getRadioButtons(radioItems) : null}
         <Button className={buttonClass} variant='contained' type='submit'>
-          Continue to the next survey
+          Submit Survey
         </Button>
 
         {showChart ? showCharts(showChart) : null}
