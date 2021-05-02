@@ -7,6 +7,7 @@ const QuickChart = require('quickchart-js');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const pdf = require('pdf-creator-node');
+var fs = require('fs');
 
 const API_PORT = process.env.PORT || 3001;
 const app = express();
@@ -50,11 +51,14 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'buffaloprenataltest@gmail.com',
-    pass: 'buffaloprenatal!',
+    pass: 'gdgotcykfzpcemzn',
   },
 });
 
 const sendEmailResults = (chartUrls) => {
+  // Read HTML Template
+  var html = fs.readFileSync('pdfTemplate.html', 'utf8');
+
   var imageTemplate = '';
 
   chartUrls.forEach((url) => {
@@ -62,17 +66,10 @@ const sendEmailResults = (chartUrls) => {
   });
 
   const emailTemplate = `<h1>FATHERHOOD INITIATIVE</h1>
-  <p>Based on your results of the surveys we have putting together a
+  <h2><p>Based on your results of the surveys we have put together a
   rubric of your current levels of engagement in the focal categories.
   These results are not permanent and are subject to change as you
-  progress through the course.</p>${imageTemplate}`;
-
-  var mailOptions = {
-    from: 'buffaloprenataltest@gmail.com',
-    to: 'bolanosjohn21@gmail.com',
-    subject: 'Buffalo Fatherhood Initiative Survey Results',
-    html: emailTemplate,
-  };
+  progress through the course.</p></h2><br/>${imageTemplate}`;
 
   pdfOptions = {
     format: 'A3',
@@ -80,13 +77,49 @@ const sendEmailResults = (chartUrls) => {
     border: '10mm',
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
+  const document = {
+    html: html,
+    data: {
+      chartUrls,
+    },
+    path: './output.pdf',
+    type: '',
+  };
+
+  pdf
+    .create(document, pdfOptions)
+    .then((res) => {
+      console.log(res);
+      var mailOptions = {
+        from: 'buffaloprenataltest@gmail.com',
+        to: 'bolanosjohn21@gmail.com, darrien.johnson@gmail.com ',
+        subject: 'Buffalo Fatherhood Initiative Survey Results',
+        html: emailTemplate,
+        attachments: [
+          {
+            filename: 'surveyResults.pdf',
+            content: fs.createReadStream('output.pdf'),
+          },
+        ],
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+          fs.unlink(__dirname + '/output.pdf', function (err) {
+            if (err) {
+              console.error(err);
+            }
+            console.log('File has been Deleted');
+          });
+        }
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 const getChartUrl = (body) => {

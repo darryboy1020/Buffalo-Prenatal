@@ -6,12 +6,9 @@
   </head>
   <body>
     <h1>COPARNETING &amp; FSES SURVEY</h1>
-    <ul>
-      {{#each users}}
-      <li>Name: {{this.name}}</li>
-      <li>Age: {{this.age}}</li>
-      <br />
-      {{/each}}
-    </ul>
+    {{#each chartUrls}}
+    <img src="{{this}}" />
+    <br />
+    {{/each}}
   </body>
 </html>
