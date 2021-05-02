@@ -60,7 +60,7 @@ const Testimonials = ({
   return (
     <div className={containerClass}>
       <Grid container justify='center' spacing={3}>
-        <Grid item className={top_textClass} xs={12}>
+        <Grid item className={top_textClass} xs={4} sm={6} md={8} lg={12}>
           <Typography align='center' variant='h2'>
             {quote_1}
           </Typography>
@@ -71,7 +71,7 @@ const Testimonials = ({
               <Image href={href} alt={alt} />
             </Grid>
 
-            <Grid className={quoteClass} item xs={12} sm={8}>
+            <Grid className={quoteClass} item xs={4} sm={6} md={8} lg={12}>
               <Typography paragraph variant='h3'>
                 {quote}
               </Typography>
@@ -92,7 +92,7 @@ const Testimonials = ({
           <Grid item xs={3}>
             <Typography variant='h6'>{credit}</Typography>
           </Grid>
-          <Grid item className={logo_imageClass} xs={6} sm={3}>
+          <Grid item className={logo_imageClass} xs={3} sm={6}>
             <Image href={href_2} alt={alt_2} />
           </Grid>
         </Grid>
